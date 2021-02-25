@@ -211,6 +211,8 @@ var cnPrefix = {
     "Cactus Boss (hp: ": "仙人掌Boss (生命值：",
     "Gunman Cactus (hp: ": "枪手仙人掌 (生命值：",
     "Condensed Desert Bush (hp: ": "浓缩沙漠灌木 (生命值：",
+    "Baby Penguin (hp: ": "小企鹅 (生命值：",
+    "Western Cactus (hp: ": "西方仙人掌 (生命值：",
     "Weapon ": "武器 ",
     "Auto": "自动",
     "Auto ": "自动",
