@@ -135,7 +135,7 @@ var cnItems = {
     'Token click upgrade applies to automatic clicks, too': '令牌点击升级也适用于自动点击',
     'Token boost obtained with timer based on Level': '基于级别的计时器获得令牌提升',
     'Toggle display tickrate at Status': '切换属性显示的滴答声',
-    'Exp boost based on Transcesion Point': '经验提升鲫鱼超越点',
+    'Exp boost based on Transcesion Point': '经验提升基于超越点',
     'Go to meta world!': '进入元世界！',
     'Make some Skill stronger': '使一些技能更强',
     'Enable Low Detail Mod': '启用低细节模式',
