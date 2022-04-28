@@ -1,0 +1,994 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Do Hyeon', sans-serif;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+*::selection {
+  background: #ffc670;
+}
+body {
+  overflow-y: scroll;
+}
+.clearFix::after {
+  clear: both;
+  content: '';
+  display: block;
+}
+.left {
+  float: left;
+}
+#warpAll {
+  height: 99vh;
+  width: 99vw;
+  background-size: 99vw 99vh;
+}
+#warpAll2 {
+
+}
+#popupLayer {
+  z-index: 9999;
+  padding: 0 30px 20px 30px;
+  font-size: 1.5em;
+  background-color: rgba(94, 94, 94, 0.6);
+}
+#popupDmg {
+  background: linear-gradient(to right, #ab453c, #e33e30);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+#popupToken {
+  background: linear-gradient(to right, #e3b330, #9c7b22);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 1.5em;
+  user-select: none;
+}
+.stageNav {
+  margin: 0 auto;
+  width: 15vw;
+  height: 5vw;
+}
+.stageNav > div {
+  margin: auto;
+  float: left;
+}
+.stageNavNum {
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  float: left;
+}
+.stageNavNumButton {
+  float: left;
+  width: 45px;
+  height: 45px;
+  background-size: cover;
+  cursor: pointer;
+}
+#basicStatus {
+  padding: 2px 5px 6px 5px;
+  position: fixed;
+  z-index: 9998;
+  width: 100vw;
+  background-image: url(bg/bg.png);
+  color: white;
+}
+#basicStatus > div {
+  font-size: 16px;
+}
+#basicStatus > div:not(:last-child) {
+  margin-bottom: 2px;
+}
+#displayTickRate {
+  font-size: 0.8em;
+}
+.levelup {
+  color: #fcf44e;
+  text-shadow: 0 0 7px #fcf44e;
+}
+.levelup2 {
+  color: white;
+  text-shadow: 0 0 0 hsla(0, 0%, 0%, 0);
+
+  transition: color 10s ease 0s, text-shadow 10s ease 0s;
+}
+#mainNav {
+  position: fixed;
+  z-index: 9998;
+  padding-top: 50px;
+  width: 100vw;
+}
+#mainNav > div {
+  padding: 5px 0;
+  width: 12.49999999%;
+  height: 18px;
+  font-size: 16px;
+  font-style: 9pt;
+  float: left;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  background-color: #d18330;
+
+  transition: color 0.3s ease 0s, background-color 0.3s ease 0s;
+}
+#mainNav > div:hover {
+  color: #d18330;
+  background-color: #ebb173;
+
+  transition: color 0.3s ease 0s, background-color 0.3s ease 0s;
+}
+#menusWarp {
+  padding-top: 54px;
+}
+#menusWarp > div {
+  padding-top: 20px;
+  height: auto;
+}
+#fieldWarp {
+  height: 80vh;
+  background-size: cover;
+  text-align: center;
+}
+#monster {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 4px;
+  width: 35vh;
+  height: 35vh;
+  cursor: pointer;
+  background-size: auto 30vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.monsterMove {
+  bottom: 0;
+  right: 0;
+}
+#monLevel {
+  font-size: 1.5em;
+}
+#monsterStatus {
+  font-size: 3em;
+}
+#monsterHpProgress {
+  width: 60vw;
+}
+#monsterHpProgressNum {
+  width: 50px;
+}
+#monsterMastery {
+  margin: 10px 0;
+  height: 60vh;
+  font-size: 1.3em;
+  background-image: url(bg/bg.png);
+  background-size: cover;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+#masteryQuest {
+  margin: 10px 0;
+  height: 60vh;
+  font-size: 0.9em;
+  background-image: url(bg/bg.png);
+  background-size: cover;
+  overflow-y: scroll;
+}
+#masteryQuest > div {
+  float: left;
+}
+#masteryQuest > span {
+  float: inherit;
+}
+#lootWarp {
+  background-image: url(bg/loot_bg.png);
+}
+.lootSection {
+  width: inherit;
+  overflow-x: hidden;
+}
+#bulkOpen {
+  margin-top: 20px;
+}
+.bulkOpenSelect {
+  border: 5px solid black;
+  border-radius: 3px;
+  margin-left: 10px;
+  font-size: 3em;
+  cursor: pointer;
+  background-color: white;
+}
+.lootMark {
+  width: inherit;
+  padding-left: 5px;
+  margin: 10px 0;
+  background-color: white;
+  font-weight: bold;
+}
+.lootItem {
+  display: inline-block;
+  width: 23vw;
+  height: 100%;
+  float: left;
+  cursor: pointer;
+  border: 5px solid black;
+  border-radius: 3px;
+}
+.lootImg {
+  width: 10vh;
+  height: 10vh;
+  background-size: auto 10vh;
+  background-repeat: no-repeat;
+}
+#inventoryWarp {
+  background-image: url(bg/inventory_bg.png);
+}
+#weaponWarp {
+  margin: 3px auto;
+  width: 80%;
+  height: 16vw;
+}
+.weaponBg {
+  padding: 2vw;
+  background-size: cover;
+  width: 11vw;
+  height: 11vw;
+  float: left;
+  cursor: pointer;
+}
+.weaponBg:not(:first-child) {
+  margin-left: 3px;
+}
+.weapon {
+  width: 11vw;
+  height: 11vw;
+  margin: 0 auto;
+  float: left;
+  background-size: cover;
+  margin: 0 auto;
+  margin-top: 4px;
+  cursor: pointer;
+  object-fit: contain;
+  object-position: center;
+}
+#weaponStatus {
+  margin: 0 auto;
+  background-color: white;
+  width: 60%;
+  border: 5px solid #db7f2e;
+  border-radius: 3px;
+}
+#weaponName {
+  font-size: 3em;
+  font-weight: bold;
+  background-color: #d6d6d6;
+}
+.totalCombatStatus {
+  color: white;
+}
+#tokenShopWarp {
+  padding-bottom: 40px;
+  text-align: center;
+  background: linear-gradient(45deg, blueviolet, aquamarine);
+}
+#tokenBulkOpenWarp {
+  margin-bottom: 5px;
+  float: none;
+  width: 100%;
+}
+#tokenBulkOpen {
+  margin: 0 auto;
+  width: 80%;
+  background-color: inherit;
+}
+#tokenBulkOpen > div {
+  margin-right: 0.9%;
+  float: left;
+  font-size: 1.5em;
+  width: 24%;
+  text-align: center;
+  background-color: rgba(173, 173, 173, 0.5);
+
+  transition: all 0.7s;
+}
+#tokenBulkOpen > div:hover {
+  background-color: rgba(173, 173, 173, 0.9);
+
+  transition: all 0.7s;
+}
+#tokenDisplay {
+  font-size: 2.5em;
+  animation-duration: 5s;
+  animation-name: tokenShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes tokenShiny {
+  from {
+    color: #f0c44a;
+    text-shadow: 0 0 4px #f0c44a;
+  }
+  50% {
+    color: #3beb81;
+    text-shadow: 0 0 7px #3beb81;
+  }
+  to {
+    color: #f0c44a;
+    text-shadow: 0 0 4px #f0c44a;
+  }
+}
+#tokenShopList {
+  margin: 0 15px;
+  background-color: rgba(217, 162, 95, 0.5);
+}
+#tokenList {
+
+}
+.tokenName {
+  width: 100%;
+  text-align: left;
+  float: left;
+  font-size: 1.7em;
+}
+.tokenBuff {
+  width: auto;
+  text-align: left;
+}
+.tokenBuy {
+  margin: 10px 30px;
+  font-size: 1.3em;
+  background-color: #f0bc7d;
+  border: 5px solid #e69737;
+  border-radius: 3px;
+
+  transition: all 0.7s;
+}
+.tokenBuy:hover {
+  color: white;
+  background-color: #d9a25f;
+  border: 5px solid #bd7620;
+  border-radius: 5px;
+
+  transition: all 0.7s;
+}
+.buySkillPointN {
+  margin: 2px 2px;
+  padding: 0 3px;
+  width: 10px;
+  text-align: center;
+  color: white;
+  border: 4px solid #252433;
+  border-radius: 3px;
+  background: linear-gradient(0deg, #474747, #7d7d7d);
+}
+.buySkillPointY {
+  margin: 2px 2px;
+  padding: 0 3px;
+  width: 10px;
+  text-align: center;
+  color: white;
+  border: 4px solid #252433;
+  border-radius: 3px;
+  background: linear-gradient(0deg, #5203fc, #181191);
+
+  transition: all 0.7s;
+}
+.buySkillPointY:hover {
+  color: #62f0e4;
+  padding: 0 6px;
+  width: 15px;
+  background: linear-gradient(0deg, #181191, #5203fc);
+
+  transition: all 0.7s;
+}
+#masteryWarp {
+  padding: 20px 0;
+  background-image: url(bg/mastery_bg.png);
+  text-align: center;
+}
+#skillPoint {
+  font-size: 2.5em;
+  animation-duration: 13s;
+  animation-name: skillShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes skillShiny {
+  from {
+    color: #410d94;
+    text-shadow: 0 0 7px #410d94;
+  }
+  50% {
+    color: #752516;
+    text-shadow: 0 0 15px #752516;
+  }
+  to {
+    color: #410d94;
+    text-shadow: 0 0 7px #410d94;
+  }
+}
+.skillLine {
+  margin: 0 auto;
+  width: 85%;
+  height: 16vh;
+}
+.skillLine:not(:last-child) {
+  margin-bottom: 10px;
+}
+.skillSel {
+  border-radius: 3px;
+  margin: auto 0;
+  width: 17vw;
+  height: 16vh;
+  float: left;
+}
+.skillSel:not(:last-child) {
+  margin-right: 2vw;
+}
+.skillN {
+  border: 3px solid #a4352d;
+  background: linear-gradient(0deg, #f5a8a2, #d96259);
+}
+.skillM {
+  border: 3px solid #35a42d;
+  background: linear-gradient(0deg, #a8f5a3, #61d959);
+  cursor: pointer;
+}
+.skillY {
+  border: 3px solid #2c70a3;
+  background: linear-gradient(0deg, #a2d1f5, #59a2d9);
+  cursor: pointer;
+}
+.skillSel > p {
+  font-size: 1em;
+}
+.skillInfo {
+  width: auto;
+}
+#settingDiv {
+  background-color: white;
+}
+#artifactWarp {
+  padding: 20px 0 0 20px;
+  background-image: url(bg/artifact_bg.png);
+  width: 100vw;
+  height: 80vh;
+  text-align: center;
+}
+#artifactWarp > div {
+  width: auto;
+  height: 80vh;
+}
+#artifactCollection {
+  width: 75.999%;
+  background-image: url(bg/artifact_bg.png);
+  float: left;
+}
+.artifactLine {
+  margin-bottom: 0.5vw;
+  height: 6vw;
+}
+.artifactBg {
+  padding-top: 1vw;
+  width: 6vw;
+  height: 5vw;
+  text-align: center;
+  float: left;
+  background-size: cover;
+}
+.artifactBg:not(:last-child) {
+  margin-right: 0.99vw;
+}
+.artifact {
+  height: 4.5vw;
+  width: 4.5vw;
+}
+#artifactOverall {
+  width: 19.999%;
+  height: 59vh;
+  float: left;
+  border: 5px solid #468ca6;
+  border-radius: 3px;
+  background-color: #93becf;
+}
+#overallArtifactTxt {
+  margin: 0 auto;
+  font-size: 1.2em;
+  color: #2b6f82;
+  text-shadow: 0 0 2px #2b6f82;
+}
+#artifactStatus {
+  margin: 10px auto 0 auto;
+  width: 75%;
+  border: 5px solid #2b8182;
+  border-radius: 3px;
+  background-color: white;
+}
+#artifactName {
+  background-color: #d6d6d6;
+}
+.artiDesBg {
+  padding: 5px;
+  border: 5px solid #468ca6;
+  border-radius: 3px;
+  background-color: #93becf;
+}
+#transcensionDisplay {
+  width: 100vw;
+  font-size: 2.5em;
+  text-align: center;
+  animation-duration: 13s;
+  animation-name: transcensionShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes transcensionShiny {
+  from {
+    color: #ffffff;
+    text-shadow: 0 0 10px #616161;
+  }
+  50% {
+    color: #d6d6d6;
+    text-shadow: 0 0 15px #000000;
+  }
+  to {
+    color: #ffffff;
+    text-shadow: 0 0 10px #616161;
+  }
+}
+#otherworldyWarp {
+  text-align: center;
+}
+#otherworldWarp {
+  background-image: url(bg/otherworldy_bg.png);
+  text-align: center;
+  width: 100%;
+  height: auto;
+}
+#transcensionWarp > div {
+  margin: 0 auto;
+  width: 80%;
+}
+#transcensionDisplay {
+  text-align: center;
+  float: left;
+}
+#transcensionQuest {
+  text-align: center;
+  float: left;
+}
+#transcensionQuest > div {
+  float: left;
+}
+#transcensionQuest {
+  margin: 0 auto 10px auto;
+  width: 100%;
+}
+#switchUnC {
+  margin: 0 auto 10px auto;
+  width: 100%;
+}
+#metaButton {
+  margin: 0 8vw;
+  padding: 0 3px;
+  width: 30vw;
+  border: 4px solid #252433;
+  border-radius: 3px;
+  float: left;
+}
+#transcensionButton {
+  margin: 0 8vw;
+  padding: 0 3px;
+  width: 30vw;
+  border: 4px solid #252433;
+  border-radius: 3px;
+  float: left;
+}
+#switchUnC > div {
+  margin-left: 7.5vw;
+  padding: 0 3px;
+  width: 12.5vw;
+  background-color: rgba(46, 46, 46, 0.5);
+  float: left;
+
+  transition: all 0.7s;
+}
+#switchUnC > div:not(:last-child) {
+  margin-right: 0 8vw;
+}
+#switchUnC > div:hover {
+  background-color: rgba(46, 46, 46, 0.3);
+
+  transition: all 0.7s;
+}
+#shopBulkOpen > div {
+  margin-right: 0.9%;
+  float: left;
+  font-size: 1.5em;
+  width: 24%;
+  text-align: center;
+  background-color: rgba(173, 173, 173, 0.5);
+
+  transition: all 0.7s;
+}
+#shopBulkOpen > div:hover {
+  background-color: rgba(173, 173, 173, 0.9);
+
+  transition: all 0.7s;
+}
+.trY {
+  color: #ffffff;
+  text-shadow: 0 0 0px #fff;
+  cursor: pointer;
+  background: linear-gradient(0deg, #63b9db, #7ad6c4);
+
+  transition: all 0.7s;
+}
+.trY:hover {
+  color: #b9f0e5;
+  text-shadow: 0 0 5px #000;
+  background: linear-gradient(0deg, #7ad6c4, #63b9db);
+
+  transition: all 0.3s;
+}
+.trN {
+  background: linear-gradient(0deg, #474747, #7d7d7d);
+}
+.meY {
+  color: #ffffff;
+  text-shadow: 0 0 0px #fff;
+  cursor: pointer;
+  background: linear-gradient(0deg, #464be3, #9c46e3);
+
+  transition: all 0.7s;
+}
+.meY:hover {
+  color: #a15dd9;
+  text-shadow: 0 0 5px #000;
+  background: linear-gradient(0deg, #9c46e3, #464be3);
+
+  transition: all 0.3s;
+}
+.meN {
+  background: linear-gradient(0deg, #474747, #7d7d7d);
+}
+.upgradeSel {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.upgradeN {
+  color: black;
+  background-color: rgba(168, 62, 50, 0.5);
+
+  transition: all 0.2s;
+}
+.upgradeN:hover {
+  color: #7d7d7d;
+  background-color: rgba(168, 62, 50, 0.2);
+
+  transition: all 0.2s;
+}
+.upgradeM {
+  color: black;
+  cursor: pointer;
+  background-color: rgba(50, 168, 52, 0.5);
+
+  transition: all 0.2s;
+}
+.upgradeM:hover {
+  color: #7d7d7d;
+  background-color: rgba(50, 168, 52, 0.8);
+
+  transition: all 0.2s;
+}
+.upgradeY {
+  color: black;
+  background-color: rgba(82, 127, 199, 0.5);
+}
+.upgradeA {
+  color: black;
+  cursor: pointer;
+  background-color: rgba(183, 82, 199, 0.5);
+
+  transition: all 0.2s;
+}
+.upgradeA:hover {
+  color: #e04a4a;
+  cursor: pointer;
+  background-color: rgba(183, 82, 199, 0.8);
+
+  transition: all 0.2s;
+}
+.autoSel {
+  margin-bottom: 8px;
+}
+#settingDiv > p {
+  font-size: 4em;
+  padding-left: 5px;
+  font-weight: bold;
+  color: #777777;
+}
+#extraStatus {
+  width: 99%;
+  padding-left: 1vw;
+  text-align: left;
+  color: white;
+  background-image: url(bg/bg.png);
+  background-size: cover;
+  overflow-y: hidden;
+  font-size: 15pt;
+  height: 300px;
+}
+.rareMob {
+  color: #77eb34;
+  text-shadow: 0 0 3px #77eb34;
+}
+.rare {
+  color: #42f5bf;
+  text-shadow: 0 0 3px #42f5bf;
+}
+.maxLv {
+  color: #ffb521;
+  text-shadow: 0 0 3px #ffb521;
+}
+.loot {
+  color: #81f059;
+  text-shadow: 0 0 3px #81f059;
+}
+.sp {
+  color: #ae83f2;
+  text-shadow: 0 0 5px #39135c, 0 0 5px #39135c;
+}
+.discord {
+  color: #4775cc;
+  text-shadow: 0 0 2px #4775cc, 0 0 2px #4775cc;
+
+  transition: all 0.7s;
+}
+.discord:hover {
+  color: #33589e;
+  text-shadow: 0 0 10px #33589e, 0 0 8px #33589e;
+
+  transition: all 0.7s;
+}
+.discord > a {
+  text-decoration: none;
+  color: inherit;
+}
+.code {
+  animation-duration: 2s;
+  animation-name: codeShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes codeShiny {
+  from {
+    color: #cc58b3;
+    text-shadow: 0 0 7px #cc58b3;
+  }
+  50% {
+    color: #f57fdb;
+    text-shadow: 0 0 15px #f57fdb;
+  }
+  to {
+    color: #cc58b3;
+    text-shadow: 0 0 7px #cc58b3;
+  }
+}
+.black {
+  color: black;
+}
+.devCode {
+  animation-duration: 2s;
+  animation-name: devCodeShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes devCodeShiny {
+  from {
+    color: #332436;
+    text-shadow: 0 0 7px #332436;
+  }
+  50% {
+    color: #6c626e;
+    text-shadow: 0 0 15px #6c626e;
+  }
+  to {
+    color: #332436;
+    text-shadow: 0 0 7px #332436;
+  }
+}
+.rank0 {
+  text-shadow: 0px 0px 3px black;
+}
+.rank1 {
+  color: black;
+  text-shadow: 0px 0px 3px black;
+}
+.rank2 {
+  color: #3e7acf;
+  text-shadow: 0px 0px 3.5px #3e7acf;
+}
+.rank3 {
+  color: #d6853e;
+  text-shadow: 0px 0px 4px #d6853e;
+}
+.rank4 {
+  color: #d6ca3e;
+  text-shadow: 0px 0px 4px #d6ca3e;
+}
+.rank5 {
+  color: #3dbbdb;
+  text-shadow: 0px 0px 4.5px #3dbbdb;
+}
+.rank6 {
+  color: #3de0de;
+  text-shadow: 0px 0px 5px #3de0de;
+}
+.rank7 {
+  color: #3bd9b4;
+  text-shadow: 0px 0px 5.5px #3bd9b4;
+}
+.rank8 {
+  color: #383dc2;
+  text-shadow: 0px 0px 6px #383dc2;
+}
+.rank9 {
+  color: #9c2da8;
+  text-shadow: 0px 0px 6.5px #9c2da8;
+}
+.rank10 {
+  color: #9c8128;
+  text-shadow: 0px 0px 7px #9c8128;
+}
+.rank11 {
+  animation-duration: 10s;
+  animation-name: rank11Shiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes rank11Shiny {
+  from {
+    color: #c9705f;
+    text-shadow: 0px 0px 2px #c9705f, 0px 0px 2px #c9705f;
+  }
+  25% {
+    color: #d1d169;
+    text-shadow: 0px 0px 4px #d1d169, 0px 0px 4px #d1d169;
+  }
+  50% {
+    color: #93d16d;
+    text-shadow: 0px 0px 6px #93d16d, 0px 0px 6px #93d16d;
+  }
+  75% {
+    color: #72d690;
+    text-shadow: 0px 0px 8px #72d690, 0px 0px 8px #72d690;
+  }
+  to {
+    color: #c9705f;
+    text-shadow: 0px 0px 2px #c9705f, 0px 0px 2px #c9705f;
+  }
+}
+.spaceText {
+  animation-duration: 10s;
+  animation-name: spaceTextShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes spaceTextShiny {
+  from {
+    text-shadow: 0 0 0px black;
+  }
+  10% {
+    text-shadow: 0 0 0px black;
+  }
+  50% {
+    text-shadow: 0 0 15px white;
+  }
+  90% {
+    text-shadow: 0 0 0px black;
+  }
+  to {
+    text-shadow: 0 0 0px black;
+  }
+}
+.gotArtifact {
+  color: #86e81e;
+  text-shadow: 0 0 7px #86e81e;
+}
+.gotChest {
+  color: #ebe53b;
+  text-shadow: 0 0 7px #ebe53b;
+}
+.brokeUniv {
+  animation-duration: 5s;
+  animation-name: brokeUnivShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes brokeUnivShiny {
+  from {
+    color: #7926a6;
+    text-shadow: 0 0 7px #7926a6;
+  }
+  50% {
+    color: #000000;
+    text-shadow: 0 0 10px #000000;
+  }
+  to {
+    color: #7926a6;
+    text-shadow: 0 0 7px #7926a6;
+  }
+}
+.brokeInf {
+  animation-duration: 5s;
+  animation-name: brokeInfShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes brokeInfShiny {
+  from {
+    color: #7fd7e3;
+    text-shadow: 0 0 7px #7fd7e3;
+  }
+  50% {
+    color: #d94a9d;
+    text-shadow: 0 0 10px #d94a9d;
+  }
+  to {
+    color: #7fd7e3;
+    text-shadow: 0 0 7px #7fd7e3;
+  }
+}
+.chestTP {
+  animation-duration: 2s;
+  animation-name: chestTPShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes chestTPShiny {
+  from {
+    color: #50e6cd;
+    text-shadow: 0 0 7px #50e6cd;
+  }
+  50% {
+    color: #50b9e6;
+    text-shadow: 0 0 10px #50b9e6;
+  }
+  to {
+    color: #50e6cd;
+    text-shadow: 0 0 7px #50e6cd;
+  }
+}
+.chestTPD {
+  animation-duration: 2s;
+  animation-name: chestTPDShiny;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes chestTPDShiny {
+  from {
+    color: #245950;
+    text-shadow: 0 0 7px #245950;
+  }
+  50% {
+    color: #2b637a;
+    text-shadow: 0 0 10px #2b637a;
+  }
+  to {
+    color: #245950;
+    text-shadow: 0 0 7px #245950;
+  }
+}
+#settingDiv > div {
+  margin-bottom: 8px;
+}
+#resetButton {
+  color: red;
+}

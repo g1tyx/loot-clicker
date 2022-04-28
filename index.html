@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+<script src="//g8hh.com/static/js/jquery.min.js"></script>
+<!--
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+-->
+  <script src="nameData.js"></script>
+  <script src="main.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" href="favicon.ico">
+    <title>无尽的战利品 - Loot Clicker v2.2.30</title>
+  </head>
+  <body>
+<script src="chs.js?07071443"></script>
+<script src="//g8hh.com/zh/core.js"></script>
+    <div id="warpAll" style="background-image: url(bg/loading.png);">
+      <div id="warpAll2" style="display: none;">
+        <div id="basicStatus">
+          <div id="levelStat">
+            <span id="playerLevel">Level 1</span>
+            <span id="playerExp"> - 0/10 EXP (0.00%)</span>
+            <span id="displayTickRate">10ms</span>
+          </div>
+          <div id="token">0 Token (120s)</div>
+        </div>
+        <div id="mainNav">
+          <div class="mainMenu">Field</div>
+          <div class="mainMenu">Loot</div>
+          <div class="mainMenu">Inventory</div>
+          <div class="mainMenu">Token Shop</div>
+          <div class="mainMenu">Mastery</div>
+          <div class="mainMenu">Artifact</div>
+          <div class="mainMenu">Otherworldy</div>
+          <div class="mainMenu">Setting</div>
+        </div>
+        <div id="menusWarp">
+          <div id="fieldWarp" style="background-image: url(bg/world1.png);">
+            <span class="left" style="width: 79.999%;">
+              <div id="monster" class="monsterMove" style="background-image: url(monster/1.png);"></div>
+              <div id="monLevel">Lv 1</div>
+              <div id="monsterStatus" class="">슬라임 (hp: 10 / 10)</div>
+              <meter id="monsterHpProgress" value="1" max="1"></meter><span id="monsterHpProgressNum">100%</span>
+              <div class="stageNav">
+                <span id="stageL" class="stageNavNumButton stageNavNumButtonL" style="background-image: url(etc/previous.png);"></span>
+                <span id="stageNum" class="stageNavNum black">1</span>
+                <span id="stageR" class="stageNavNumButton stageNavNumButtonR" style="background-image: url(etc/next.png);"></span>
+              </div>
+            </span>
+            <span class="left" style="width: 19.999%;">
+              <div id="masteryQuest">
+                <div>Player Level (0/35)</div><span class="buySkillPointY">+3 SP</span><br>
+                <div>Collect Token (0/1000)</div><span class="buySkillPointY">+2 SP</span><br>
+                <div>Token Upgrade (0/100)</div><span class="buySkillPointY">+2 SP</span><br>
+                <div>Monster Lv1 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv2 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv3 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv4 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv5 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv6 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv7 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv8 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv9 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Monster Lv10 (0/1000)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Sword Nr1 (0/999)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Sword Nr2 (0/999)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Sword Nr3 (0/999)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Sword Nr4 (0/999)</div><span class="buySkillPointY">+1 SP</span><br>
+                <div>Sword Nr5 (0/999)</div><span class="buySkillPointY">+3 SP</span><br>
+              </div>
+            </span>
+            <div id="tCS" class="totalCombatStatus black">
+              Dmg: 1<br>Hit/s: 0
+            </div>
+          </div>
+          <div id="lootWarp">
+            <div class="lootSection">
+
+            </div>
+            <div id="bulkOpen">
+              <span id="bulk1" class="bulkOpenSelect">x1</span>
+              <span id="bulk2" class="bulkOpenSelect">x10</span>
+              <span id="bulk3" class="bulkOpenSelect">x100</span>
+              <span id="bulk4" class="bulkOpenSelect">x1000</span>
+              <span id="bulk5" class="bulkOpenSelect">xMax</span>
+            </div>
+            <div class="lootSection">
+              <div class="lootMark">Utility</div>
+              <span id="EXPBottleC" class="lootItem">
+                <div id="EXPBottleQ" class="lootName">EXP Bottle - 0</div>
+                <div id="EXPBottle" class="lootImg" style="background-image: url(loot/exp_bottle.png);"></div>
+              </span>
+              <span id="mysteryChestC" class="lootItem">
+                <div id="mysteryChestQ" class="lootName">Mysterious Chest - 0</div>
+                <div id="mysteryChest" class="lootImg" style="background-image: url(loot/mystery_chest.png);"></div>
+              </span>
+            </div>
+            <div id="tierLoot" class="lootSection">
+              <div id="tierLootMark" class="lootMark">티어 1</div>
+              <span id="lootBag1" class="lootItem">
+                <div class="lootName">슬라임 가방 - 0</div>
+                <div class="lootImg" style="background-image: url(loot/1.png);"></div>
+              </span>
+              <span id="lootBag2" class="lootItem">
+                <div class="lootName">반짝이는 슬라임 가방 - 0</div>
+                <div class="lootImg" style="background-image: url(loot/2.png);"></div>
+              </span>
+              <span id="lootBag3" class="lootItem">
+                <div class="lootName">고블린 가방 - 0</div>
+                <div class="lootImg" style="background-image: url(loot/3.png);"></div>
+              </span>
+              <span id="lootBag4" class="lootItem">
+                <div class="lootName">반짝이는 고블린 가방 - 0</div>
+                <div class="lootImg" style="background-image: url(loot/4.png);"></div>
+              </span>
+            </div>
+            <div class="stageNav">
+              <span id="lootL" class="stageNavNumButton stageNavNumButtonL" style="background-image: url(etc/previous.png);"></span>
+              <span id="lootNum"class="stageNavNum black">1</span>
+              <span id="lootR" class="stageNavNumButton stageNavNumButtonR" style="background-image: url(etc/next.png);"></span>
+            </div>
+            <div class="totalCombatStatus black">
+              Total Status<br>Dmg: 1<br>Hit/s: 0
+            </div>
+          </div>
+          <div id="inventoryWarp">
+            <div id="weaponWarp">
+              <div class="weaponBg" style="background-image: url(etc/mystery_weapon.png);">
+                <img class="weapon" src="weapon/0.png"></img>
+              </div>
+              <div class="weaponBg" style="background-image: url(etc/mystery_weapon.png);">
+                <img class="weapon" src="weapon/0.png"></img>
+              </div>
+              <div class="weaponBg" style="background-image: url(etc/mystery_weapon.png);">
+                <img class="weapon" src="weapon/0.png"></img>
+              </div>
+              <div class="weaponBg" style="background-image: url(etc/mystery_weapon.png);">
+                <img class="weapon" src="weapon/0.png"></img>
+              </div>
+              <div class="weaponBg" style="background-image: url(etc/mystery_weapon.png);">
+                <img class="weapon" src="weapon/0.png"></img>
+              </div>
+            </div>
+            <div class="stageNav">
+              <span id="weaponL" class="stageNavNumButton stageNavNumButtonL" style="background-image: url(etc/previous.png);"></span>
+              <span id="weaponNum" class="stageNavNum">1</span>
+              <span id="weaponR" class="stageNavNumButton stageNavNumButtonR" style="background-image: url(etc/next.png);"></span>
+            </div>
+            <div id="weaponStatus">
+              <div id="weaponName" class="rank0">None +0</div>
+              <div id="totalWeaponStatus">
+                Dmg: 0
+              </div>
+            </div>
+            <div class="totalCombatStatus">
+              Total Status<br>Dmg: 1<br>Hit/s: 0
+            </div>
+          </div>
+          <div id="tokenShopWarp">
+            <div id="tokenDisplay">You Have 0 Tokens</div>
+            <div id="tokenBulkOpen" class="clearFix">
+              <div>x1</div>
+              <div>x10</div>
+              <div>x100</div>
+              <div>x1000</div>
+            </div>
+            <div id="tokenShopList">
+              <div class="tokenList">
+                <div class="tokenName"><span id="tokenName1">공격력 버프</span> Lv.<span id="tokenLevel1">0</span>/9999</div>
+                <div id="tokenBuff1" class="tokenBuff">x1 -> x1.2</div>
+                <div id="tokenBuy1" class="tokenBuy">Buy (3 token)</div>
+              </div>
+              <div class="tokenList">
+                <div class="tokenName"><span id="tokenName2">클릭 버프</span> Lv.<span id="tokenLevel2">0</span>/4000</div>
+                <div id="tokenBuff2" class="tokenBuff">x1 -> x2</div>
+                <div id="tokenBuy2" class="tokenBuy">Buy (5 token)</div>
+              </div>
+              <div class="tokenList">
+                <div class="tokenName"><span id="tokenName3">경험치 버프</span> Lv.<span id="tokenLevel3">0</span>/99</div>
+                <div id="tokenBuff3" class="tokenBuff">x1 -> x1.1</div>
+                <div id="tokenBuy3" class="tokenBuy">Buy (10 token)</div>
+              </div>
+              <div class="tokenList">
+                <div class="tokenName"><span id="tokenName4">몬스터 경험치 버프</span> Lv.<span id="tokenLevel4">0</span>/15</div>
+                <div id="tokenBuff4" class="tokenBuff">^2.85 -> ^2.86</div>
+                <div id="tokenBuy4" class="tokenBuy">Buy (50 token)</div>
+              </div>
+              <div class="tokenList">
+                <div class="tokenName"><span id="tokenName5">토큰 획득 (클릭)</span> Lv.<span id="tokenLevel5">0</span>/99</div>
+                <div id="tokenBuff5" class="tokenBuff">1% -> 2%</div>
+                <div id="tokenBuy5" class="tokenBuy">Buy (5 token)</div>
+              </div>
+              <div class="tokenList">
+                <div class="tokenName"><span id="tokenName6">토큰 획득 (타이머)</span> Lv.<span id="tokenLevel6">0</span>/85</div>
+                <div id="tokenBuff6" class="tokenBuff">600s -> 540s</div>
+                <div id="tokenBuy6" class="tokenBuy">Buy (10 token)</div>
+              </div>
+              <div class="tokenList">
+                <div class="tokenName"><span id="tokenName7">자동 클릭</span> Lv.<span id="tokenLevel7">0</span>/9999</div>
+                <div id="tokenBuff7" class="tokenBuff">0/s -> 1/s</div>
+                <div id="tokenBuy7" class="tokenBuy">Buy (10 token)</div>
+              </div>
+            </div>
+          </div>
+          <div id="masteryWarp">
+            <span id="skillPoint">You Have 0 Skill Point</span>
+            <div class="skillLine">
+              <div class="skillSel skillN" id="skill00">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill01">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill02">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill03">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+            </div>
+            <div class="skillLine">
+              <div class="skillSel skillN" id="skill10">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill11">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill12">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill13">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+            </div>
+            <div class="skillLine">
+              <div class="skillSel skillN" id="skill20">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill21">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill22">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill23">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+            </div>
+            <div class="skillLine">
+              <div class="skillSel skillN" id="skill20">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill21">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill22">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill23">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+            </div>
+            <div class="skillLine">
+              <div class="skillSel skillN" id="skill20">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill21">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill22">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+              <div class="skillSel skillN" id="skill23">
+                <p>1</p>
+                <p>1.1</p>
+              </div>
+            </div>
+            <p>Click Bought Skill again to Refund</p>
+          </div>
+          <div id="artifactWarp">
+            <div>
+              <div id="artifactCollection">
+                <div class="artifactLine">
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                </div>
+                <div class="artifactLine">
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                </div>
+                <div class="artifactLine">
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                </div>
+                <div class="artifactLine">
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                </div>
+                <div class="artifactLine">
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                </div>
+                <div class="artifactLine">
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                  <div class="artifactBg" style="background-image: url(etc/mystery_weapon.png);">
+                    <img class="artifact" src="artifact/0.png"></img>
+                  </div>
+                </div>
+              </div>
+              <div id="artifactOverall">
+                <p id="overallArtifactTxt">Overall Boost</p>
+                <div id="overallArtifact">
+                  DMG Boost: x1<br>
+                  EXP Boost: x1<br>
+                  Crit Chance: +0%<br>
+                  Crit DMG: x1<br>
+                  Bonus Loot: +0<br>
+                  Token Boost (All): x1<br>
+                  Token Boost (Timer): x1<br>
+                  Token Boost (Click): x1<br>
+                  Monster Kill Stat: +0<br>
+                  Monster Weakness: +x0<br>
+                  Monster Weakness Cap: x2<br>
+                  Mysterious Chest Chance: x1<br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="otherworldyWarp">
+            <div id="otherworldWarp" class="clearFix">
+              <span id="transcensionDisplay" class="clearFix">You Have 0 Transcension Point</span>
+              <div id="transcensionQuest" class="clearFix">
+                <div id="metaButton" class="meY">
+                  Go to meta world!
+                </div>
+                <div id="transcensionButton" class="trY">
+                  Go to other world (0 TP)!
+                </div>
+              </div>
+              <div id="switchUnC" class="clearFix">
+                <div>Upgrade</div>
+                <div>Shop</div>
+                <div>Auto</div>
+                <div>Challenge</div>
+              </div>
+              <div id="transcensionWarp">
+                <div id="transcensionUpgrade" class="clearFix">
+                  <div class="upgradeLine">
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                  </div>
+                  <div class="upgradeLine">
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                  </div>
+                  <div class="upgradeLine">
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                  </div>
+                  <div class="upgradeLine">
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                    <div class="upgradeSel upgradeN">
+                      <p>1</p>
+                      <p>1.1</p>
+                    </div>
+                  </div>
+                </div>
+                <div id="transcensionShop" class="clearFix">
+                  <span id="shopBulkOpen" class="clearFix">
+                    <div>x1</div>
+                    <div>x10</div>
+                    <div>x100</div>
+                    <div>x1000</div>
+                  </span>
+                  <div class="shopSel upgradeN">
+                    <p>Otherworldy chest</p>
+                    <p>1 TP</p>
+                  </div>
+                  <p>Arti 51~60 is permanent</p>
+                </div>
+                <div id="transcensionAuto" class="clearFix">
+                  <div class="autoSel upgradeN">
+                    <p>Auto Loot</p>
+                    <p>7 TP</p>
+                  </div>
+                  <div class="autoSel upgradeN">
+                    <p>Auto Stage</p>
+                    <p>8 TP</p>
+                  </div>
+                  <div class="autoSel upgradeN">
+                    <p>Auto Token</p>
+                    <p>15 TP</p>
+                  </div>
+                  <div class="autoSel upgradeN">
+                    <p>Auto Quest</p>
+                    <p>30 TP</p>
+                  </div>
+                  <div class="autoSel upgradeN">
+                    <p>Auto Chest</p>
+                    <p>42 TP</p>
+                  </div>
+                  <div class="autoSel upgradeN">
+                    <p>Auto Mastery</p>
+                    <p>100 TP</p>
+                  </div>
+                  <div class="autoSel upgradeN">
+                    <p>Auto Otherworldy</p>
+                    <p>200 TP</p>
+                  </div>
+                  <p>Click bought auto to toggle</p>
+                </div>
+                <div id="transcensionSChallenge" class="clearFix">
+                  Comming soon...
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="settingDiv">
+            <p>Setting</p>
+            <div id="translate">
+              Eng
+            </div>
+            <div id="LDM">
+              Low Detail Mod
+            </div>
+            <div id="tickRateDisp">
+              Toggle display tickrate at Status
+            </div>
+            <div id="changeNotation">
+              Change Notation
+            </div>
+            <div id="exportButton">
+              Export Game
+            </div>
+            <div id="importButton">
+              Import Game
+            </div>
+            <div id="codeButton">
+              Enter Code
+            </div>
+            <div id="discor">
+              <a href="https://discord.gg/wkdVQxT" target="_blank">My Discord!</a>
+            </div>
+            <div id="resetButton">
+              Reset Game (10)
+            </div>
+            <div id="playtime">
+              Total Play Time: 0h
+            </div>
+            <div id="tickRate">
+              Tick rate: 10ms/10ms
+            </div>
+          </div>
+          <div id="popupLayer">
+            설명
+          </div>
+          <div id="popupToken">
+            +1
+          </div>
+          <div id="popupDmg">
+            -0
+          </div>
+          <div id="popupArti">
+            -0
+          </div>
+        </div>
+        <div id="extraStatus">
+          !!!
+        </div>
+      </div>
+    </div>
+<!--客服 开始-->
+<link rel="stylesheet" href="//g8hh.com/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
+<script src="//g8hh.com/static/js/kf.js"></script>
+<!-- 客服 结束 -->
+<!--站长统计--> 
+<div style="display: none">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?028b1b5f659ed138230f4cafd7ad0dfc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    </div>
+  </body>
+</html>
